@@ -1,2 +1,54 @@
-<h1>Photos#edit</h1>
-<p>Find me in app/views/photos/edit.html.erb</p>
+<div class="edit_page col-md-8 col-md-offset-2">
+	<div class="row">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h1>Edit Photo</h1>
+			</div>
+
+			<div class="panel-body">
+			 <div class="current_image">
+				<strong class="center">Right now</strong><br>
+					<%= link_to(image_tag(@photo.avatar.thumb.url, alt: 'Image', class: "photo"), @photo.avatar.url, target: '_blank') if @photo.avatar? %>
+			</div>
+
+			<!-- form start -->	
+				<%= simple_form_for @photo, html: {multipart: true}, url: album_photo_path do |f|  %>
+					<% if @photo.errors.any? %>
+						<div id="errors">
+							<h2> <%= pluralize(@photo.errors.count, "error") %> prevented this Photo from saving </h2>
+							<ul> <% @photo.errors.full_messages.each do |msg| %>
+								<li> <%= msg %></li>
+								<% end %>
+							</ul>
+						</div>
+					<% end %>
+
+
+
+					<%= f.input :title, input_html: {class:'form-control' }  %>
+					<%= f.input :description, input_html: {class:'form-control' }  %>
+
+
+				<!-- START carrierwave photo upload via remote URL-->
+				  <p>
+				    <!--label>Photo URL:</label-->
+				    <!--%= image_tag(@photo.avatar_url) if @photo.avatar? %-->
+				    <!--%= f.text_field :remote_avatar_url %-->
+						<%= f.file_field :avatar %>
+				  </p>
+				<!-- START carrierwave photo upload via remote URL-->
+
+
+					<%= f.button :submit, class: "btn btn-info" %>
+					<%= link_to "Cancel", album_photo_path(album_id: @album.id, id: @photo.id), class: "btn btn-warning" %> 
+
+				<% end %>
+			<!-- form end -->	
+
+
+			</div>
+
+			
+		</div>
+	</div>
+</div>
