@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PhotoAlbumApp</title>
+    <title>PhotoAlbum</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -18,12 +18,12 @@
    <div class="nav navbar navbar-inverse">
       <div class="container">
         <div class="navbar-brand"> 
-          <%= link_to "Sher's PhotoAlbum", root_path %> 
+          <%= link_to "Photo Album", root_path %> 
          </div>
 
             <% if user_signed_in? %>
             <ul class="nav navbar-nav navbar-right">
-              <li><%= link_to "Add a new album", new_album_path %></li>
+              <li><%= link_to "New Album", new_album_path %></li>
               <li><%= link_to "Settings", edit_user_registration_path %></li>
               <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
             </ul>
