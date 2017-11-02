@@ -1,6 +1,6 @@
 <h1> <%= @photo.title %> </h1>
 
-<p><%= image_tag(@event.avatar.thumb.url, alt: 'Image', class: "photo-show") if @event.avatar? %></p>
+<p><%= image_tag(@photo.avatar.thumb.url, alt: 'Image', class: "photo-show") if @photo.avatar? %></p>
 <p> <%= @photo.description %></p>
 
 <br><br>
@@ -11,12 +11,12 @@
 
 
 		<% if user_signed_in? %> 
-			<% if @event.user_id == current_user.id %> 
+			<% if @album.user_id == current_user.id %> 
 			<button type="button" class="btn btn-warning">
-				<%= link_to "Edit", edit_album_photo_path(id: @event.id) %>
+				<%= link_to "Edit", edit_album_photo_path(id: @album.id) %>
 			</button>
 			<button type="button" class="btn btn-warning">
-				<%= link_to "Delete", album_photo_path(id: @event.id), method: :delete,
+				<%= link_to "Delete", album_photo_path(id: @album.id), method: :delete,
 				data: {confirm: "Are you sure?"}%>
 			</button>
 			<% end %>
